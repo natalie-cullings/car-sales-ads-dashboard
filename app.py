@@ -7,7 +7,7 @@ import plotly_express as px
 import streamlit as st
 
 # load data
-df = pd.read_csv('../csv_files/vehicles_us.csv', parse_dates=['date_posted'])
+df = pd.read_csv('csv_files/vehicles_us.csv', parse_dates=['date_posted'])
 
 st.header('Dashboard for Exploring Vehicle Sales Ads Data', anchor='intro')
 

@@ -18,6 +18,7 @@ df = df.reindex(columns=column_order)
 # Rename the columns for better readability
 df.columns = ['Make', 'Model', 'Type', 'Model Year', 'Price', 'Odometer', 'Condition', 'Paint Color', 'Cylinders', 'Fuel', 'Transmission', 'Date Posted', 'Days Listed']
 
+# Provide a header to indicate the introduction of the dashboard
 st.header('Dashboard for Exploring Vehicle Sales Ads Data', anchor='intro')
 
 # Let user know the checkbox filters the data
@@ -31,6 +32,19 @@ if is_new:
     df = df[df['Condition'] == 'New']
 else:
     df = df
+
+# Create a multiselect for filtering based on vehicle make
+make = st.multiselect('Select Make:', df['Make'].unique())
+
+# Filter the DataFrame based on the make multiselect
+if make:
+    df = df[df['Make'].isin(make)]
+else:
+    df = df
+
+
+# Introduce the graphs section
+st.write('Graphs', anchor='graphs')    
 
 # create a scatter plot of price by model year using plotly.express
 fig = px.scatter(df, 

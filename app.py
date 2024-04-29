@@ -7,7 +7,7 @@ import plotly_express as px
 import streamlit as st
 
 # load data
-df = pd.read_csv('vehicles_us_cleaned.csv', parse_dates=['date_posted'])
+df = pd.read_csv('../csv_files/vehicles_us.csv', parse_dates=['date_posted'])
 
 st.header('Dashboard for Exploring Vehicle Sales Ads Data', anchor='intro')
 
@@ -34,7 +34,7 @@ fig = px.scatter(filtered_df,
 
 
 # Plot the price by model_year scatterplot via streamlit
-st.plotly_chart(fig, use_container_width=)
+st.plotly_chart(fig, use_container_width=True)
 
 # Plot a histogram of model_year
 fig_my = px.histogram(filtered_df, 
@@ -50,7 +50,7 @@ fig_my = px.histogram(filtered_df,
 fig_my.update_yaxes(title_text='Number of Listings')
 
 # Plot the histogram of model_year via streamlit
-st.plotly_chart(fig_my, use_container_width=)
+st.plotly_chart(fig_my, use_container_width=True)
 
 # Provide a header to indicate the data table follows
 st.header('Data Table', anchor='data-table')

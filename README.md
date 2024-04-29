@@ -19,5 +19,5 @@ This repository contains the code used to build a web app via Streamlit. The fin
 
 ## How To Access The Dashboard
 
-This web app is hosted and deployed via Render. Anyone can access it at this link: [https://car-sales-ads-dashboard.onrender.com(https://car-sales-ads-dashboard.onrender.com). 
+This web app is hosted and deployed via Render. Anyone can access it at this link: https://car-sales-ads-dashboard.onrender.com.
 

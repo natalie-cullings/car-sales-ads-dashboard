@@ -7,7 +7,16 @@ import plotly_express as px
 import streamlit as st
 
 # load data
-df = pd.read_csv('csv_files/vehicles_us.csv', parse_dates=['date_posted'])
+df = pd.read_csv('./csv_files/vehicles_us_cleaned.csv', parse_dates=['date_posted'])
+
+# Define the desired column order
+column_order = ['make', 'model', 'type', 'model_year', 'price', 'odometer', 'condition', 'paint_color', 'cylinders', 'fuel', 'transmission', 'date_posted', 'days_listed']
+
+# Reindex the DataFrame with the desired column order
+df = df.reindex(columns=column_order)
+
+# Rename the columns for better readability
+df.columns = ['Make', 'Model', 'Type', 'Model Year', 'Price', 'Odometer', 'Condition', 'Paint Color', 'Cylinders', 'Fuel', 'Transmission', 'Date Posted', 'Days Listed']
 
 st.header('Dashboard for Exploring Vehicle Sales Ads Data', anchor='intro')
 
@@ -19,28 +28,27 @@ is_new = st.checkbox('Display New Vehicles Only', value=False)
 
 # Filter the DataFrame based on the is_new checkbox
 if is_new:
-    filtered_df = df[df['condition'] == True]
+    df = df[df['Condition'] == 'New']
 else:
-    filtered_df = df
+    df = df
 
 # create a scatter plot of price by model year using plotly.express
-fig = px.scatter(filtered_df, 
-                 x='model_year', 
-                 y='price', 
-                 color='condition',
-                 title='Price by Model Year',
-                 labels={'model_year': 'Model Year', 'price': 'Price', 'condition': 'Condition'}
+fig = px.scatter(df, 
+                 x='Model Year', 
+                 y='Price', 
+                 color='Condition',
+                 title='Price by Model Year'
                  )
 
 
-# Plot the price by model_year scatterplot via streamlit
+# Plot the price by 'Model Year' scatterplot via streamlit
 st.plotly_chart(fig, use_container_width=True)
 
-# Plot a histogram of model_year
-fig_my = px.histogram(filtered_df, 
-                   x='model_year', 
+# Plot a histogram of 'Model Year'
+fig_my = px.histogram(df, 
+                   x='Model Year', 
                    title='Histogram of Model Year',
-                   labels={'model_year': 'Model Year', 'count': 'Count'}
+                   labels={'count': 'Count'}
                   )
 
 # update the x-axis range to start from 1950 and end at the maximum model year
@@ -55,5 +63,14 @@ st.plotly_chart(fig_my, use_container_width=True)
 # Provide a header to indicate the data table follows
 st.header('Data Table', anchor='data-table')
 
-# Display the filtered DataFrame
-st.write(filtered_df)
+# Remove commas from display in st.write(df)
+df['Model Year'] = df['Model Year'].astype(str)
+df['Model Year'] = df['Model Year'].str.replace(',', '')
+
+# Remove the timestamp part of the date_posted column
+df['Date Posted'] = df['Date Posted'].dt.date
+
+# Display the DataFrame
+st.write(df)
+
+

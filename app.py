@@ -18,8 +18,9 @@ df = df.reindex(columns=column_order)
 # Rename the columns for better readability
 df.columns = ['Make', 'Model', 'Type', 'Model Year', 'Price', 'Odometer', 'Condition', 'Paint Color', 'Cylinders', 'Fuel', 'Transmission', 'Date Posted', 'Days Listed']
 
-# Provide a header to indicate the introduction of the dashboard
-st.header('Dashboard for Exploring Vehicle Sales Ads Data', anchor='intro')
+# Provide a header and sub-header to indicate the introduction of the dashboard
+st.header('Exploring Vehicle Sales Ads Data', anchor='intro')
+st.subheader('An interactive web app dashboard', divider='violet')
 
 # Let user know the checkbox filters the data
 st.write('Dashboard Filters:')
@@ -34,7 +35,7 @@ else:
     df = df
 
 # Create a multiselect for filtering based on vehicle make
-make = st.multiselect('Select Make:', df['Make'].unique())
+make = st.multiselect('Select Vehicle Make:', df['Make'].unique())
 
 # Filter the DataFrame based on the make multiselect
 if make:

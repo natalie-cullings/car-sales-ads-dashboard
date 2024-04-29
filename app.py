@@ -1,3 +1,5 @@
+'''This script creates a Streamlit dashboard for exploring vehicle sales ads data.'''
+
 # load libraries
 import pandas as pd
 import numpy as np
@@ -20,7 +22,7 @@ df.columns = ['Make', 'Model', 'Type', 'Model Year', 'Price', 'Odometer', 'Condi
 
 # Provide a header and sub-header to indicate the introduction of the dashboard
 st.header('Exploring Vehicle Sales Ads Data', anchor='intro')
-st.subheader('An interactive web app dashboard', divider='violet')
+st.subheader('An Interactive Streamlit Web App Dashboard', divider='violet')
 
 # Let user know the checkbox filters the data
 st.write('Dashboard Filters:')

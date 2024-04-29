@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import nbformat as nbf
 import matplotlib.pyplot as plt
-import plotly_express as px
+import plotly.express as px
 import streamlit as st
 
 # load data

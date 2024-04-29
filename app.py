@@ -44,7 +44,7 @@ else:
 
 
 # Introduce the graphs section
-st.write('Graphs', anchor='graphs')    
+st.header('Graphs', anchor='graphs')    
 
 # create a scatter plot of price by model year using plotly.express
 fig = px.scatter(df, 

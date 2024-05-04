@@ -45,6 +45,15 @@ if make:
 else:
     df = df
 
+# Create a multiselect for filtering based on vehicle model
+model = st.multiselect('Select Vehicle Model:', df['Model'].unique())
+
+# Filter the DataFrame based on the make multiselect
+if make:
+    df = df[df['Model'].isin(model)]
+else:
+    df = df
+
 
 # Introduce the graphs section
 st.header('Graphs', anchor='graphs')    
@@ -88,6 +97,6 @@ df['Model Year'] = df['Model Year'].str.replace(',', '')
 df['Date Posted'] = df['Date Posted'].dt.date
 
 # Display the DataFrame
-st.write(df)
+st.dataframe(df)
 
 
